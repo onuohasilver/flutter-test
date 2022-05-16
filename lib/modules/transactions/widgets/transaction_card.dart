@@ -75,11 +75,13 @@ class TransactionCard extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    Text("- ₦ ${model.amount}",
+                    Text("₦ ${model.amount}",
                         style: TextStyle(
                             fontSize: 14.h,
                             fontWeight: FontWeight.w700,
-                            color: AppColors.red))
+                            color: model.amount! > 0
+                                ? Colors.green
+                                : AppColors.red))
                   ],
                 ),
               ),

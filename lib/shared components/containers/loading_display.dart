@@ -11,10 +11,21 @@ class FutureLoader extends StatelessWidget {
     return Container(
       child: control
           ? SizedBox(
-              height: 812.h,
-              child: const Center(
-                  child: CircularProgressIndicator(
-                      strokeWidth: 2, color: AppColors.purple)),
+              height: 600.h,
+              width: double.infinity,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const CircularProgressIndicator(
+                      strokeWidth: 2, color: AppColors.purple),
+                  const YSpace(8),
+                  Text(
+                    'Retrieving your transaction history',
+                    style: TextStyle(fontSize: 14.h),
+                  )
+                ],
+              ),
             )
           : child,
     );
