@@ -5,8 +5,21 @@ import 'package:renmoney_flutter_test/modules/transactions/widgets/widgets.dart'
 import 'package:renmoney_flutter_test/shared%20components/shared%20components.dart';
 import 'package:renmoney_flutter_test/utilities/utilities.dart';
 
-class AllTransactions extends StatelessWidget {
+class AllTransactions extends StatefulWidget {
   const AllTransactions({Key? key}) : super(key: key);
+
+  @override
+  State<AllTransactions> createState() => _AllTransactionsState();
+}
+
+class _AllTransactionsState extends State<AllTransactions> {
+  @override
+  void initState() {
+    TransactionProvider transactionProvider =
+        Provider.of<TransactionProvider>(context, listen: false);
+    transactionProvider.getTransactions();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

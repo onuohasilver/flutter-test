@@ -63,7 +63,7 @@ class TransactionCard extends StatelessWidget {
                               style: TextStyle(
                                   color: Colors.black, fontSize: 13.h)),
                         ),
-                        const YSpace(8),
+                        const YSpace(7),
                         Text("${model.entryDate}",
                             style: TextStyle(
                                 fontSize: 11.h,
