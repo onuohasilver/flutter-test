@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:renmoney_flutter_test/modules/transactions/screens/all_transactions.dart';
+import 'package:provider/provider.dart';
+import 'package:renmoney_flutter_test/modules/transactions/transactions.dart';
 import 'package:renmoney_flutter_test/utilities/utilities.dart';
 
 class HomeIntroButton extends StatelessWidget {
@@ -9,10 +10,13 @@ class HomeIntroButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TransactionProvider transactionProvider =
+        Provider.of<TransactionProvider>(context);
     return ElevatedButton(
       onPressed: () {
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => const AllTransactions()));
+        transactionProvider.getTransactions();
       },
       child: const Text('Load'),
       style: ButtonStyle(

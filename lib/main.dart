@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:renmoney_flutter_test/modules/entry/screens/home.dart';
+import 'package:renmoney_flutter_test/modules/transactions/controllers/transaction_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +13,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Renmoney Flutter Test',
-      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: "ProductSans"),
-      home: const Entry(),
+    return ChangeNotifierProvider(
+      create: (context) => TransactionProvider(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Renmoney Flutter Test',
+        theme: ThemeData(primarySwatch: Colors.blue, fontFamily: "ProductSans"),
+        home: const Entry(),
+      ),
     );
   }
 }

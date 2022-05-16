@@ -1,15 +1,15 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:renmoney_flutter_test/modules/transactions/models/transaction_model.dart';
 import 'package:renmoney_flutter_test/modules/transactions/screens/transaction_details.dart';
 import 'package:renmoney_flutter_test/shared%20components/shared%20components.dart';
 import 'package:renmoney_flutter_test/utilities/utilities.dart';
 
 class TransactionCard extends StatelessWidget {
-  const TransactionCard({
-    Key? key,
-    this.index = 0,
-  }) : super(key: key);
+  const TransactionCard({Key? key, this.index = 0, required this.model})
+      : super(key: key);
   final int index;
+  final TransactionModel model;
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +64,7 @@ class TransactionCard extends StatelessWidget {
                                   color: Colors.black, fontSize: 13.h)),
                         ),
                         const YSpace(8),
-                        Text("23rd Oct. 2020",
+                        Text("${model.entryDate}",
                             style: TextStyle(
                                 fontSize: 11.h,
                                 fontWeight: FontWeight.w400,
@@ -72,7 +72,7 @@ class TransactionCard extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    Text("- ₦ 50,000",
+                    Text("- ₦ ${model.amount}",
                         style: TextStyle(
                             fontSize: 14.h,
                             fontWeight: FontWeight.w700,
