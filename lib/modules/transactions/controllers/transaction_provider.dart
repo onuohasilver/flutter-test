@@ -5,20 +5,42 @@ import 'package:renmoney_flutter_test/modules/transactions/models/transaction_mo
 class TransactionProvider extends ChangeNotifier {
   final TransactionService _transactionService = TransactionService();
 
-  List<TransactionModel>? _userTransactions;
+  List<TransactionModel> _userTransactions = [];
+
+  TransactionModel? _selectedTransaction;
+
+  bool _isInProgress = false;
 
   void setUserTransactions(List<TransactionModel> val) {
     _userTransactions = val;
   }
 
-  List<TransactionModel>? get userTransactions => _userTransactions;
+  void selectTransaction(TransactionModel val) {
+    _selectedTransaction = val;
+  }
+
+  void switchProgress() {
+    _isInProgress = !_isInProgress;
+    notifyListeners();
+  }
+
+  List<TransactionModel> get userTransactions => _userTransactions;
+  TransactionModel? get selectedTransaction => _selectedTransaction;
+  bool get isInProgress => _isInProgress;
 
   ///Uses the Transaction Service to make a network request to the DB
   ///and saves the result to the provider state
-  Future<void> getTransactions() async {
+  Future<bool> getTransactions() async {
+    switchProgress();
+
     List<TransactionModel> _val =
         await _transactionService.getTransactionsFromDB();
+
     setUserTransactions(_val);
+
+    switchProgress();
+
     notifyListeners();
+    return true;
   }
 }

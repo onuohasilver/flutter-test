@@ -1,8 +1,11 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:renmoney_flutter_test/modules/transactions/controllers/transaction_provider.dart';
 import 'package:renmoney_flutter_test/modules/transactions/models/transaction_model.dart';
 import 'package:renmoney_flutter_test/modules/transactions/screens/transaction_details.dart';
-import 'package:renmoney_flutter_test/shared%20components/shared%20components.dart';
+import 'package:renmoney_flutter_test/modules/transactions/widgets/transaction_icon_widget.dart';
 import 'package:renmoney_flutter_test/utilities/utilities.dart';
 
 class TransactionCard extends StatelessWidget {
@@ -13,10 +16,12 @@ class TransactionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TransactionProvider transactionProvider =
+        Provider.of<TransactionProvider>(context);
     return Padding(
       padding: EdgeInsets.only(bottom: 10.h),
       child: BounceInUp(
-        delay: Duration(milliseconds: index + 1 * 200),
+        delay: Duration(milliseconds: index + 1 * 130),
         child: FadeInUp(
           delay: Duration(milliseconds: index + 1 * 60),
           child: Material(
@@ -25,9 +30,10 @@ class TransactionCard extends StatelessWidget {
             child: InkWell(
               borderRadius: BorderRadius.circular(8.h),
               onTap: () {
+                transactionProvider.selectTransaction(model);
                 Navigator.push(
                     context,
-                    MaterialPageRoute(
+                    CupertinoPageRoute(
                         builder: (context) => const TransactionDetailScreen()));
               },
               child: Container(
@@ -36,32 +42,29 @@ class TransactionCard extends StatelessWidget {
                 padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 13.w),
                 child: Row(
                   children: [
-                    Container(
-                      height: 35.h,
-                      width: 35.h,
-                      decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Color.fromRGBO(119, 101, 196, 0.098)),
-                      child: const Center(
-                          child: ShowSVG(ImageAsset.arrowDown,
-                              height: 10, width: 8.05)),
-                    ),
+                    IconWidget(data: getIconByType(model.type!)),
                     const XSpace(8),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        RichText(
-                          text: TextSpan(
-                              text: 'Money Transfer to ',
-                              children: const [
-                                TextSpan(
-                                    text: "John",
-                                    style: TextStyle(
-                                        color: AppColors.purple,
-                                        fontWeight: FontWeight.w700))
-                              ],
-                              style: TextStyle(
-                                  color: Colors.black, fontSize: 13.h)),
+                        SizedBox(
+                          width: 200,
+                          child: RichText(
+                            maxLines: 1,
+                            text: TextSpan(
+                                text: '${model.comment}',
+                                children: const [
+                                  TextSpan(
+                                      text: "John",
+                                      style: TextStyle(
+                                          color: AppColors.purple,
+                                          fontWeight: FontWeight.w700))
+                                ],
+                                style: TextStyle(
+                                    overflow: TextOverflow.ellipsis,
+                                    color: Colors.black,
+                                    fontSize: 13.h)),
+                          ),
                         ),
                         const YSpace(7),
                         Text("${model.entryDate}",
