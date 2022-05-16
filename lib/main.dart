@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:renmoney_flutter_test/modules/entry/screens/home.dart';
 import 'package:renmoney_flutter_test/modules/transactions/controllers/transaction_provider.dart';
+import 'package:renmoney_flutter_test/shared%20components/constants/constants.dart';
+import 'package:renmoney_flutter_test/utilities/utilities.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Renmoney Flutter Test',
-        theme: ThemeData(primarySwatch: Colors.blue, fontFamily: "ProductSans"),
+        theme: AppTheme().lightTheme,
+        darkTheme: AppTheme().darkTheme,
+        themeMode: ThemeMode.system,
         home: const Entry(),
       ),
     );

@@ -20,7 +20,7 @@ class TransactionDetailScreen extends StatelessWidget {
         height: 875.h,
         width: 312.w,
         padding: EdgeInsets.symmetric(horizontal: 20.w),
-        color: AppColors.greyPurple,
+        color: Theme.of(context).canvasColor,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -34,7 +34,8 @@ class TransactionDetailScreen extends StatelessWidget {
               height: 349.h,
               width: 334.w,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10), color: Colors.white),
+                  borderRadius: BorderRadius.circular(10),
+                  color: Theme.of(context).cardColor),
               padding: EdgeInsets.only(left: 16.w, top: 36.h, right: 37.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +92,8 @@ class _DetailEntry extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(leading, style: AppTextStyle.title1(AppColors.darkGrey)),
-            Text(content.toString(), style: AppTextStyle.title2(Colors.black))
+            Text(content.toString(),
+                style: AppTextStyle.title2(Theme.of(context).primaryColor))
           ],
         ),
       ),

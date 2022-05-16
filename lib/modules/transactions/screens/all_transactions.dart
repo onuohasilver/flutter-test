@@ -33,7 +33,7 @@ class _AllTransactionsState extends State<AllTransactions> {
       child: Container(
         height: 875.h,
         width: 312.w,
-        color: Colors.white,
+        color: Theme.of(context).backgroundColor,
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

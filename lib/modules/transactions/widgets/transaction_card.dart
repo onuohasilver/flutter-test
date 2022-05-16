@@ -25,7 +25,7 @@ class TransactionCard extends StatelessWidget {
         child: FadeInUp(
           delay: Duration(milliseconds: index + 1 * 60),
           child: Material(
-            color: AppColors.lightGrey,
+            color: Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(8.h),
             child: InkWell(
               borderRadius: BorderRadius.circular(8.h),
@@ -62,7 +62,7 @@ class TransactionCard extends StatelessWidget {
                                 ],
                                 style: TextStyle(
                                     overflow: TextOverflow.ellipsis,
-                                    color: Colors.black,
+                                    color: Theme.of(context).primaryColor,
                                     fontSize: 13.h)),
                           ),
                         ),

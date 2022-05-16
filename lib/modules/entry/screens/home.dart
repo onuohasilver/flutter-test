@@ -10,7 +10,7 @@ class Home extends StatelessWidget {
     return Container(
       height: 812.h,
       width: 375.w,
-      color: Colors.white,
+      color: Theme.of(context).backgroundColor,
       child: const Center(child: HomeIntroButton()),
     );
   }
