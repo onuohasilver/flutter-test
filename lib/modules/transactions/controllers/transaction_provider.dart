@@ -37,9 +37,7 @@ class TransactionProvider extends ChangeNotifier {
         await _transactionService.getTransactionsFromDB();
 
     setUserTransactions(_val);
-
     switchProgress();
-
     notifyListeners();
     return true;
   }
