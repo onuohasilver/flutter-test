@@ -45,17 +45,22 @@ class _AllTransactionsState extends State<AllTransactions> {
             const YSpace(23),
             FutureLoader(
               control: transactionProvider.isInProgress,
-              child: Flexible(
-                child: ListView.builder(
-                  physics: const BouncingScrollPhysics(),
-                  padding: EdgeInsets.zero,
-                  itemCount: transactionProvider.userTransactions.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return TransactionCard(
-                        index: index,
-                        model: transactionProvider.userTransactions[index]);
-                  },
+              child: AlternateDisplay(
+                control: transactionProvider.hasError,
+                initialChild: Flexible(
+                  child: ListView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    padding: EdgeInsets.zero,
+                    itemCount: transactionProvider.userTransactions.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return TransactionCard(
+                          index: index,
+                          model: transactionProvider.userTransactions[index]);
+                    },
+                  ),
                 ),
+                finalChild: ErrorDisplay(
+                    retry: () => transactionProvider.getTransactions()),
               ),
             ),
           ],

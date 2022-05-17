@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:renmoney_flutter_test/modules/transactions/controllers/transaction_provider.dart';
 import 'package:renmoney_flutter_test/modules/transactions/models/transaction_model.dart';
 import 'package:renmoney_flutter_test/modules/transactions/screens/transaction_details.dart';
+import 'package:renmoney_flutter_test/modules/transactions/utitlities/utitlities.dart';
 import 'package:renmoney_flutter_test/modules/transactions/widgets/transaction_icon_widget.dart';
 import 'package:renmoney_flutter_test/utilities/utilities.dart';
 
@@ -81,19 +82,4 @@ class TransactionCard extends StatelessWidget {
       ),
     );
   }
-}
-
-String stripComment(String? text) {
-  if (text == null) {
-    return "No Transaction Description";
-  }
-
-  if (text.startsWith("BillPayment")) {
-    return text.substring(12);
-  }
-
-  if (text.startsWith("Transfer")) {
-    return text.substring(10);
-  }
-  return text;
 }

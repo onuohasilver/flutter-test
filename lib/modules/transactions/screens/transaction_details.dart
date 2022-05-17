@@ -42,7 +42,9 @@ class TransactionDetailScreen extends StatelessWidget {
                       style: AppTextStyle.title1(AppColors.purple)),
                   const YSpace(22),
                   DetailEntry(leading: 'Type', content: model.type),
-                  DetailEntry(leading: 'Amount', content: "₦ ${model.amount}"),
+                  DetailEntry(
+                      leading: 'Amount',
+                      content: "₦ ${currency(model.amount)}"),
                   DetailEntry(
                       leading: 'Transaction Date', content: model.entryDate!),
                   DetailEntry(

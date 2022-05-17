@@ -66,6 +66,7 @@ TransactionType getTransactionType(String type) {
 
 enum TransactionType { phone, withdrawal, deposit }
 
+///converts the parsed number into a formatted currency String
 String currency(number) {
   final _currency = NumberFormat.currency(symbol: "");
   return _currency.format(number);
