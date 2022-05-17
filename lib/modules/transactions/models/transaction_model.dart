@@ -65,3 +65,8 @@ TransactionType getTransactionType(String type) {
 }
 
 enum TransactionType { phone, withdrawal, deposit }
+
+String currency(number) {
+  final _currency = NumberFormat.currency(symbol: "");
+  return _currency.format(number);
+}

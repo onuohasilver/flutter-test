@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:renmoney_flutter_test/modules/transactions/controllers/transaction_provider.dart';
 import 'package:renmoney_flutter_test/modules/transactions/widgets/widgets.dart';
-import 'package:renmoney_flutter_test/shared%20components/containers/loading_display.dart';
 import 'package:renmoney_flutter_test/shared%20components/shared%20components.dart';
 import 'package:renmoney_flutter_test/utilities/utilities.dart';
 

@@ -48,23 +48,13 @@ class TransactionCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          width: 200,
-                          child: RichText(
-                            maxLines: 1,
-                            text: TextSpan(
-                                text: '${model.comment}',
-                                children: const [
-                                  TextSpan(
-                                      text: "John",
-                                      style: TextStyle(
-                                          color: AppColors.purple,
-                                          fontWeight: FontWeight.w700))
-                                ],
-                                style: TextStyle(
-                                    overflow: TextOverflow.ellipsis,
-                                    color: Theme.of(context).primaryColor,
-                                    fontSize: 13.h)),
-                          ),
+                          width: 180,
+                          child: Text(stripComment(model.comment),
+                              maxLines: 1,
+                              style: TextStyle(
+                                  overflow: TextOverflow.ellipsis,
+                                  color: Theme.of(context).primaryColor,
+                                  fontSize: 13.h)),
                         ),
                         const YSpace(7),
                         Text("${model.entryDate}",
@@ -75,7 +65,7 @@ class TransactionCard extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    Text("₦ ${model.amount}",
+                    Text("₦ ${currency(model.amount)}",
                         style: TextStyle(
                             fontSize: 14.h,
                             fontWeight: FontWeight.w700,
@@ -91,4 +81,19 @@ class TransactionCard extends StatelessWidget {
       ),
     );
   }
+}
+
+String stripComment(String? text) {
+  if (text == null) {
+    return "No Transaction Description";
+  }
+
+  if (text.startsWith("BillPayment")) {
+    return text.substring(12);
+  }
+
+  if (text.startsWith("Transfer")) {
+    return text.substring(10);
+  }
+  return text;
 }

@@ -9,6 +9,10 @@ class AppBackButton extends StatelessWidget {
         color: Colors.transparent,
         child: InkWell(
             onTap: () => Navigator.pop(context),
-            child: const Icon(Icons.chevron_left)));
+            borderRadius: BorderRadius.circular(40),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(Icons.chevron_left, color: color),
+            )));
   }
 }

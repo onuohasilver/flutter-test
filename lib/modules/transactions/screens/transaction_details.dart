@@ -1,10 +1,8 @@
-import 'dart:math';
-
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:renmoney_flutter_test/modules/transactions/controllers/transaction_provider.dart';
 import 'package:renmoney_flutter_test/modules/transactions/models/transaction_model.dart';
+import 'package:renmoney_flutter_test/modules/transactions/widgets/transaction_detail_entry.dart';
 import 'package:renmoney_flutter_test/shared%20components/shared%20components.dart';
 import 'package:renmoney_flutter_test/utilities/utilities.dart';
 
@@ -43,11 +41,11 @@ class TransactionDetailScreen extends StatelessWidget {
                   Text('Detailed summary of transaction',
                       style: AppTextStyle.title1(AppColors.purple)),
                   const YSpace(22),
-                  _DetailEntry(leading: 'Type', content: model.type),
-                  _DetailEntry(leading: 'Amount', content: model.amount),
-                  _DetailEntry(
+                  DetailEntry(leading: 'Type', content: model.type),
+                  DetailEntry(leading: 'Amount', content: "₦ ${model.amount}"),
+                  DetailEntry(
                       leading: 'Transaction Date', content: model.entryDate!),
-                  _DetailEntry(
+                  DetailEntry(
                       leading: 'Reference', content: model.transactionId),
                   Row(
                     children: [
@@ -60,40 +58,12 @@ class TransactionDetailScreen extends StatelessWidget {
                         color: Colors.green,
                       ),
                       Text(' Successful',
-                          style: AppTextStyle.title1(Colors.green)),
+                          style: AppTextStyle.title2(Colors.green)),
                     ],
                   )
                 ],
               ),
             )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _DetailEntry extends StatelessWidget {
-  const _DetailEntry({
-    Key? key,
-    required this.leading,
-    required this.content,
-  }) : super(key: key);
-  final String leading;
-  final dynamic content;
-
-  @override
-  Widget build(BuildContext context) {
-    return FadeIn(
-      duration: Duration(milliseconds: Random().nextInt(1000)),
-      child: Padding(
-        padding: EdgeInsets.only(bottom: 30.h),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(leading, style: AppTextStyle.title1(AppColors.darkGrey)),
-            Text(content.toString(),
-                style: AppTextStyle.title2(Theme.of(context).primaryColor))
           ],
         ),
       ),
