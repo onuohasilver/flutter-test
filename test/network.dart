@@ -21,6 +21,4 @@ fetchDataTest() {
             .getTransactionsFromDB(NetworkRequests(mockHTTPClientFailure)),
         throwsA(isA<Exception>()));
   });
-
-  
 }

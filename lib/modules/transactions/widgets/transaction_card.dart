@@ -38,7 +38,7 @@ class TransactionCard extends StatelessWidget {
               },
               child: Container(
                 width: 330.w,
-                height: 69.h,
+                height: 74.h,
                 padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 13.w),
                 child: Row(
                   children: [

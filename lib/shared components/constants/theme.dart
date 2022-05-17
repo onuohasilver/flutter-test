@@ -19,5 +19,6 @@ class AppTheme {
       cardColor: AppColors.lightGrey);
 
   ThemeData get lightTheme => _lightTheme;
+
   ThemeData get darkTheme => _darkTheme;
 }

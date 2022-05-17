@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:renmoney_flutter_test/modules/transactions/controllers/network_calls.dart';
 import 'package:renmoney_flutter_test/modules/transactions/models/transaction_model.dart';
+import 'package:renmoney_flutter_test/shared%20components/containers/show_toast.dart';
 
 class TransactionProvider extends ChangeNotifier {
   final TransactionService _transactionService = TransactionService();
@@ -32,12 +33,17 @@ class TransactionProvider extends ChangeNotifier {
   ///and saves the result to the provider state
   Future<bool> getTransactions() async {
     switchProgress();
+    try {
+      List<TransactionModel> _val =
+          await _transactionService.getTransactionsFromDB();
 
-    List<TransactionModel> _val =
-        await _transactionService.getTransactionsFromDB();
+      setUserTransactions(_val);
+      switchProgress();
+    } on Exception {
+      switchProgress();
+      showToast("A Network Error Occured");
+    }
 
-    setUserTransactions(_val);
-    switchProgress();
     notifyListeners();
     return true;
   }
